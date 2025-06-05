@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
-import { WebLinksAddon } from "@xterm/addon-web-links"; // ✅ Import WebLinksAddon
+import { WebLinksAddon } from "@xterm/addon-web-links";
 import "xterm/css/xterm.css";
 import { XTermMethods } from "../utils/XTermMethods";
 import { getTerminalIntroMessages } from "../assets/constants/Constants";
@@ -26,7 +26,6 @@ const XTermComponent = () => {
 
       term.current.open(terminalRef.current);
 
-      // ✅ Load addons (FitAddon + WebLinksAddon)
       const fitAddon = new FitAddon();
       const webLinksAddon = new WebLinksAddon();
       term.current.loadAddon(fitAddon);
