@@ -57,27 +57,41 @@
     <div id="root"></div>
 
     <!-- SCRIPT TO DETECT MOBILE -->
-    <script>
-      function isMobile() {
-        return window.innerWidth < 768;
-      }
+ <script>
+  function isMobileDevice() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
 
-      function handleDeviceCheck() {
-        const mobileCard = document.getElementById("mobile-warning");
-        const root = document.getElementById("root");
+    // Detect mobile via user agent
+    const mobileUA =
+      /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
 
-        if (isMobile()) {
-          mobileCard.classList.remove("hidden");
-          root.style.display = "none";
-        } else {
-          mobileCard.classList.add("hidden");
-          root.style.display = "block";
-        }
-      }
+    // Detect touch device
+    const touchDevice =
+      ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-      handleDeviceCheck();
-      window.addEventListener("resize", handleDeviceCheck);
-    </script>
+    // Detect small screen fallback
+    const smallScreen = window.innerWidth < 1024;
+
+    return mobileUA || (touchDevice && smallScreen);
+  }
+
+  function handleDeviceCheck() {
+    const mobileCard = document.getElementById("mobile-warning");
+    const root = document.getElementById("root");
+
+    if (isMobileDevice()) {
+      mobileCard.classList.remove("hidden");
+      root.style.display = "none";
+    } else {
+      mobileCard.classList.add("hidden");
+      root.style.display = "block";
+    }
+  }
+
+  handleDeviceCheck();
+  window.addEventListener("resize", handleDeviceCheck);
+</script>
+
 
     <!-- React Entry -->
     <script type="module" src="/src/main.tsx"></script>
