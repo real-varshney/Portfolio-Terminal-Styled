@@ -86,6 +86,13 @@
         "endOffset": 0
       },
       {
+        "type": "URL",
+        "key": "Download-Résumé",
+        "value": "https://drive.google.com/file/d/1BgrTCLnC6IjZkm8Dtpk_zOPLXxgke-Qd/view?usp=sharing",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
         "type": "Text",
         "color": "92",
         "key": "Start the Game",
@@ -168,7 +175,7 @@
       "files": {
         "resume.txt": {
           "type": "file",
-          "content": "\nRESUME\n\nDownload from Google Drive:\nhttps://drive.google.com/file/d/YOUR_RESUME_ID/view\n"
+          "content": "\nRESUME\n\nDownload from Google Drive: \nClick Here : Download-Résumé\n"
         }
       }
     },
