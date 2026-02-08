@@ -1,17 +1,86 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Basic Meta -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
+    <title>Vishal Varshney | Software Developer Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- SEO -->
+    <meta name="description" content="Portfolio of Vishal Varshney - Software Developer specializing in Java, Spring Boot, PostgreSQL, and AWS." />
+    <meta name="author" content="Vishal Varshney" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Vite + React + TS</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
     <link href="/src/styles/tailwind.css" rel="stylesheet">
+
+    <meta name="theme-color" content="#000000" />
   </head>
-  <body>
+
+  <body class="bg-black font-mono">
+
+    <!-- MOBILE NOT SUPPORTED CARD -->
+    <div id="mobile-warning"
+         class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black text-green-400">
+
+      <div class="border border-green-400 rounded-lg p-8 max-w-sm text-center shadow-lg">
+
+        <img src="/vite.svg"
+             alt="Vishal Varshney Logo"
+             class="w-16 h-16 mx-auto mb-4 opacity-80" />
+
+        <h1 class="text-xl font-bold mb-3">
+          Mobile Not Supported
+        </h1>
+
+        <p class="text-sm opacity-80">
+          This terminal portfolio is designed for laptops and desktops.
+        </p>
+
+        <p class="text-sm mt-2 opacity-80">
+          Please open using a laptop or desktop browser.
+        </p>
+
+      </div>
+    </div>
+
+    <!-- MAIN APP -->
     <div id="root"></div>
+
+    <!-- SCRIPT TO DETECT MOBILE -->
+    <script>
+      function isMobile() {
+        return window.innerWidth < 768;
+      }
+
+      function handleDeviceCheck() {
+        const mobileCard = document.getElementById("mobile-warning");
+        const root = document.getElementById("root");
+
+        if (isMobile()) {
+          mobileCard.classList.remove("hidden");
+          root.style.display = "none";
+        } else {
+          mobileCard.classList.add("hidden");
+          root.style.display = "block";
+        }
+      }
+
+      handleDeviceCheck();
+      window.addEventListener("resize", handleDeviceCheck);
+    </script>
+
+    <!-- React Entry -->
     <script type="module" src="/src/main.tsx"></script>
+
   </body>
 </html>
