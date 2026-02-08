@@ -4,14 +4,26 @@ import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "@xterm/addon-web-links";
 import "xterm/css/xterm.css";
 import { XTermMethods } from "../utils/XTermMethods";
-import { getTerminalIntroMessages } from "../assets/constants/Constants";
+import { getTerminalIntroMessages } from "./IntroLoader";
 import TypeAnimation from "../utils/TypeAnimation";
-import { fullPrompt } from "../assets/constants/Constants";
+import highlightDynamicLinks from "../utils/highlightDynamicLinks";
 
 const XTermComponent = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const term = useRef<Terminal | null>(null);
   const [isIntroLoaded, setIsIntroLoaded] = useState(false);
+  const skipIntroRef = useRef<(() => void) | null>(null);
+  const isIntroLoadedRef = useRef(false);
+  const isPromptReadyRef = useRef(false);
+
+  const getPrompt = () => {
+    const path = XTermMethods.navigator?.getCurrentPath() || "~";
+    return `portfolio@vishal.varshney ${path}$ \u200B`;
+  };
+
+  useEffect(() => {
+    isIntroLoadedRef.current = isIntroLoaded;
+  }, [isIntroLoaded]);
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -31,6 +43,85 @@ const XTermComponent = () => {
       term.current.loadAddon(fitAddon);
       term.current.loadAddon(webLinksAddon);
       fitAddon.fit();
+
+      // Focus the terminal so Enter key works immediately
+      term.current.focus();
+
+      // Set up unified key handler
+      term.current.onKey(({ key, domEvent }) => {
+        if (!term.current) return;
+
+        if (XTermMethods.isGameMode) {
+            if (domEvent.ctrlKey && domEvent.key === 'd') {
+                domEvent.preventDefault();
+                XTermMethods.exitGame(term.current);
+            } else {
+                XTermMethods.handleGameInput(key);
+            }
+            return;
+        }
+
+        if (XTermMethods.isCatMode) {
+            if (domEvent.ctrlKey && domEvent.key === 'd') {
+                domEvent.preventDefault();
+                XTermMethods.saveCatFile();
+                const newPrompt = getPrompt();
+                term.current.write(`\r\n${newPrompt}`);
+            } else if (domEvent.key === "Enter") {
+                const prompt = getPrompt();
+                XTermMethods.enter(term.current, prompt);
+            } else if (domEvent.key === "Backspace") {
+                XTermMethods.backspace(term.current, "");
+            } else {
+                XTermMethods.type(term.current, key, '', domEvent);
+            }
+            return;
+        }
+
+        if (domEvent.key === "Enter") {
+          // During intro, skip animation
+          if (!isIntroLoadedRef.current && skipIntroRef.current) {
+            domEvent.preventDefault();
+            skipIntroRef.current();
+            return;
+          }
+          // After intro, execute command
+          if (isIntroLoadedRef.current && isPromptReadyRef.current) {
+            const oldPrompt = getPrompt();
+            XTermMethods.enter(term.current, oldPrompt);
+            if (XTermMethods.isCatMode) {
+              term.current.write("\r\n");
+            } else {
+              const newPrompt = getPrompt();
+              term.current.write(`\r\n${newPrompt}`, () => {
+                XTermMethods.setValue(term.current);
+              });
+            }
+          }
+        } else if (domEvent.key === "ArrowUp") {
+          if (isIntroLoadedRef.current && isPromptReadyRef.current) {
+            domEvent.preventDefault();
+            const prompt = getPrompt();
+            XTermMethods.showHistory(term.current, prompt, -1);
+          }
+        } else if (domEvent.key === "ArrowDown") {
+          if (isIntroLoadedRef.current && isPromptReadyRef.current) {
+            domEvent.preventDefault();
+            const prompt = getPrompt();
+            XTermMethods.showHistory(term.current, prompt, 1);
+          }
+        } else if (domEvent.key === "Backspace") {
+          if (isIntroLoadedRef.current && isPromptReadyRef.current) {
+            const prompt = getPrompt();
+            XTermMethods.backspace(term.current, prompt);
+          }
+        } else {
+          if (isIntroLoadedRef.current && isPromptReadyRef.current) {
+            const prompt = getPrompt();
+            XTermMethods.type(term.current, key, prompt, domEvent);
+          }
+        }
+      });
     }
 
     return () => {
@@ -40,44 +131,32 @@ const XTermComponent = () => {
 
   useEffect(() => {
     if (isIntroLoaded && term.current) {
-      term.current.write(`\r\n${fullPrompt}`);
-      setTimeout(() => {
+      const prompt = getPrompt();
+      term.current.write(`\r\n${prompt}`, () => {
         XTermMethods.setValue(term.current);
-      }, 0);
-
-      term.current.onKey(({ key, domEvent }) => {
-        if (!term.current) return;
-
-        if (domEvent.key === "Enter") {
-          XTermMethods.enter(term.current, fullPrompt);
-        } else if (domEvent.key === "ArrowUp") {
-          domEvent.preventDefault();
-          XTermMethods.showHistory(term.current, fullPrompt, -1);
-        } else if (domEvent.key === "ArrowDown") {
-          domEvent.preventDefault();
-          XTermMethods.showHistory(term.current, fullPrompt, 1);
-        } else if (domEvent.key === "Backspace") {
-          XTermMethods.backspace(term.current, fullPrompt);
-        } else {
-          XTermMethods.type(term.current, key, fullPrompt, domEvent);
-        }
+        isPromptReadyRef.current = true;
       });
-
-      return () => {
-        term.current?.dispose();
-      };
     }
   }, [isIntroLoaded]);
 
   useEffect(() => {
     if (!isIntroLoaded && term.current) {
       const termWidth = term.current.cols; 
+      // Ensure dynamic link provider is registered before intro renders
+      try {
+        highlightDynamicLinks(term.current, "");
+      } catch (e) {
+        console.warn("early link registration failed:", e);
+      }
       const introMessages = getTerminalIntroMessages(termWidth);
-      TypeAnimation(term.current, introMessages).then(() => {
+      const { promise, skip } = TypeAnimation(term.current, introMessages);
+      skipIntroRef.current = skip;
+      
+      promise.then(() => {
         setIsIntroLoaded(true);
       });
     }
-  }, [isIntroLoaded]);
+  }, []);
 
   return (
     <div ref={terminalRef} style={{ width: "100%", height: "100%", overflow: "hidden" }} />

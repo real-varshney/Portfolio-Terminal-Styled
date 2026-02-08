@@ -1,52 +1,187 @@
-  {
-    "VISIBLE": {
-      "WELCOME": "Welcome to Vishal Varshney's Portfolio!\r\nType 'help' to see available commands.\r\n",
-      "HELP": "Available commands:\r\n - ls projects: List all projects\r\n - about: Learn more about me\r\n - sudo game: Start the hidden game\r\n - clear: Clear the terminal\r\n - help: Show this help message\r\n",
-      "LS PROJECTS": "D-Cosmo - AI chatbot for the medical field\r\nPortfolio GitHub - This portfolio project\r\n deploy - Deploy the portfolio\r\n",
-      "ABOUT": "Hi, I'm Vishal Varshney, a developer passionate about AI and web development.\r\n",
-      "UNKNOWN": "Command not found. Type 'help' for a list of commands.\r\n",
-      "DEPLOY": " Initiating Request\r\n Now deploying the portfolio...\r\n DEPLOYING...\r\n deployed successfully\r\n click here to view the portfolio : vishalvarsheny.info\r\n"
-    },
-    "HIDDEN": {
-      "sudo game": "Launching game...\r\n",
-      "clear": "\u001b[2J\u001b[H",
-      "cls": "\u001b[2J\u001b[H",
-      "LINKS":[
-        {
-          "type": "URL",
-          "key": "D-Cosmo",
-          "value": "https://www.github.com/vishalvarshney/D-Cosmo"
-        },
-        {
-          "type": "URL",
-          "key": "vishalvarsheny.info",
-          "value": "https://www.google.com" 
-        },
-        {
-          "type": "Text",
-          "key": "Portfolio GitHub",
-          "value": "cd ./src/assets/templates/portfolio"
-        },
-        {
-          "type": "Text",
-          "key": "Deploy",
-          "value": "deploy --prod"
-        },
-        {
-          "type": "Text",
-          "key": "ls projects",
-          "value": "ls projects"
-        },
-        {
-          "type": "Text",
-          "key": "about",
-          "value": "about"
-        },
-        {
-          "type": "Text",
-          "key": "help",
-          "value": "help"
+{
+  "VISIBLE": {
+    "WELCOME": "Welcome to Vishal Varshney's Portfolio!\r\nType 'help' to see available commands.\r\n",
+    "HELP": "\nTerminal Portfolio by Vishal Varshney\r\n\r\nAvailable Commands:\r\n  about       : Professional overview\r\n  experience  : View work experience\r\n  projects    : View technical projects\r\n  skills      : View technical skills\r\n  education   : View education details\r\n  resume      : View and download resume\r\n  contact     : Contact and social links\r\n  clear       : Clear terminal\r\n  help        : Show this help message\r\n",
+    "UNKNOWN": "Command not found. Type 'help' to see available commands.\r\n",
+    "UNSUPPORTED": "This command is not supported yet. Contributions welcome on GitHub!\r\n"
+  },
+  "HIDDEN": {
+    "cls": "\u001b[2J\u001b[H",
+    "LINKS": [
+      {
+        "type": "Text",
+        "key": "about",
+        "value": "cd ~/about | cat bio.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "experience",
+        "value": "cd ~/experience | cat work.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "projects",
+        "value": "cd ~/projects | cat summaryProjects.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "skills",
+        "value": "cd ~/skills | cat technical.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "education",
+        "value": "cd ~/education | cat academic.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "resume",
+        "value": "cd ~/resume | cat resume.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "contact",
+        "value": "cd ~/contact | cat info.txt",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "help",
+        "value": "help",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "key": "clear",
+        "value": "cls",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "URL",
+        "key": "github",
+        "value": "https://github.com/real-varshney",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "URL",
+        "key": "contribute",
+        "value": "https://github.com/real-varshney/Portfolio-Terminal-Styled",
+        "startOffset": 0,
+        "endOffset": 0
+      },
+      {
+        "type": "Text",
+        "color": "92",
+        "key": "Start the Game",
+        "value": "sudo space-adventure",
+        "startOffset": 0,
+        "endOffset": 0
+      }
+    ]
+  },
+  "FILESYSTEM": {
+    "about": {
+      "type": "directory",
+      "description": "Professional Summary",
+      "files": {
+        "bio.txt": {
+          "type": "file",
+          "content": "\nVISHAL VARSHNEY\n\nSoftware Developer specializing in backend systems and scalable architecture.\n\nFocused on building reliable APIs, enterprise systems, and automation tools using Java and Spring Boot.\n\nStrong experience in database optimization, cloud integrations, and document automation.\n\nInterested in distributed systems, system design, and high-performance backend engineering.\n\nGitHub: https://github.com/real-varshney\nLinkedIn: https://linkedin.com/in/real-varshney\n"
         }
-      ]
+      },
+      "subdirectories": {
+        "secret": {
+          "type": "directory",
+          "description": "Hidden Adventure",
+          "files": {
+            "README.md": {
+              "type": "file",
+              "content": "\nSECRET DISCOVERY\n\nYou have discovered something hidden.\n\nI have created a space adventure for those who love to venture beyond the known.\n\nA journey through the stars awaits those brave enough to begin.\n\nStart the Game\n"
+            }
+          }
+        }
+      }
+    },
+    "experience": {
+      "type": "directory",
+      "description": "Professional Experience",
+      "files": {
+        "work.txt": {
+          "type": "file",
+          "content": "\nWORK EXPERIENCE\n\nVeersa Technology\nSoftware Developer\nJuly 2024 – Present\n\nResponsibilities:\n- Developed backend services using Java and Spring Boot\n- Designed and optimized PostgreSQL database queries\n- Built document automation pipelines using docx4j\n- Integrated third-party APIs and cloud storage systems\n- Implemented asynchronous workflows using AWS services\n- Developed role-based access and workflow automation systems\n\nPrevious Role:\nJava Backend Intern\n\nFreelance – Kare AI\nReact Native Developer\nApril 2024\n\n- Built mobile application with speech-to-text and AI integration\n- Integrated frontend with backend APIs\n"
+        }
+      }
+    },
+
+    "projects": {
+      "type": "directory",
+      "description": "Technical Projects",
+      "files": {
+        "summaryProjects.txt": {
+          "type": "file",
+          "content": "\nPROJECTS\n\n1. AI Addiction Recovery App\n   AI-based therapy and habit tracking application\n   Tech: Java, Spring Boot, Android, Machine Learning\n   Publication: ARET Conference (Scopus Indexed)\n\n2. Cashierless Counter\n   AI-powered checkout system using object detection\n   Tech: React.js, Python, YOLOv8\n   Achievement: Smart India Hackathon Winner\n\n3. Terminal Portfolio\n   Interactive terminal-style developer portfolio\n   Tech: React, TypeScript, Xterm.js\n"
+        }
+      }
+    },
+
+    "skills": {
+      "type": "directory",
+      "description": "Technical Skills",
+      "files": {
+        "technical.txt": {
+          "type": "file",
+          "content": "\nTECHNICAL SKILLS\n\nLanguages:\nJava, JavaScript, TypeScript, SQL\n\nBackend:\nSpring Boot, REST APIs\n\nFrontend:\nReact.js, Next.js, React Native\n\nDatabase:\nPostgreSQL, Firebase\n\nCloud & Tools:\nAWS S3, AWS SQS, AWS X-Ray\nDocker, Git, Elastic Stack\nDocx4j, DocuSign API\n"
+        }
+      }
+    },
+
+    "education": {
+      "type": "directory",
+      "description": "Education",
+      "files": {
+        "academic.txt": {
+          "type": "file",
+          "content": "\nEDUCATION\n\nBachelor of Technology (Computer Science)\nABES Engineering College\nGPA: 8.8\n\nHigher Secondary Education\nSt. Francis Inter College\nPercentage: 94%\n"
+        }
+      }
+    },
+
+    "resume": {
+      "type": "directory",
+      "description": "Resume",
+      "files": {
+        "resume.txt": {
+          "type": "file",
+          "content": "\nRESUME\n\nDownload from Google Drive:\nhttps://drive.google.com/file/d/YOUR_RESUME_ID/view\n"
+        }
+      }
+    },
+
+    "contact": {
+      "type": "directory",
+      "description": "Contact Info",
+      "files": {
+        "info.txt": {
+          "type": "file",
+          "content": "\nCONTACT\n\nEmail: vishalvarshney888@gmail.com\nPhone: +91 8279533079\nGitHub: https://github.com/real-varshney\nLinkedIn: https://linkedin.com/in/real-varshney\n"
+        }
+      }
     }
   }
+}

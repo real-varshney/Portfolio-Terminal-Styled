@@ -1,0 +1,77 @@
+{
+  "VISIBLE": {
+    "WELCOME": "Welcome to Vishal Varshney's Portfolio!\r\nType 'help' to see available commands.\r\n",
+    "HELP": "Terminal Portfolio by Vishal Varshney\r\n\r\nAvailable Commands:\r\n  projects   : Explore all projects\r\n  about      : Learn about me\r\n  contact    : Get in touch\r\n  clear      : Clear terminal\r\n  help       : Show this message\r\n",
+    "UNKNOWN": "Command not found. Type 'help' for available commands.\r\n",
+    "UNSUPPORTED": "This command is not supported yet. Come contribute on GitHub!\r\n"
+  },
+  "HIDDEN": {
+    "cls": "\u001b[2J\u001b[H",
+    "LINKS": [
+        {"type": "Text", "key": "projects", "value": "cd ~/projects | cat summaryProjects.txt", "startOffset": 0, "endOffset": 0},
+      {"type": "Text", "key": "about", "value": "cd ~/about | cat bio.txt", "startOffset": 0, "endOffset": 0},
+            {"type": "Text", "color": "93","key": "about", "value": "cd ~/about | cat bio.txt", "startOffset": 0, "endOffset": 0},
+      {"type": "Text", "key": "contact", "value": "cd ~/contact | cat info.txt", "startOffset": 0, "endOffset": 0},
+      {"type": "Text", "key": "clear", "value": "cls", "startOffset": 0, "endOffset": 0},
+      {"type": "URL", "key": "contribute", "value": "https://github.com/vishalvarshney/Portfolio-Terminal-Styled", "startOffset": 0, "endOffset": 0}
+    ]
+  },
+  "FILESYSTEM": {
+    "projects": {
+      "type": "directory",
+      "description": "My Projects",
+      "files": {
+        "summaryProjects.txt": {
+          "type": "file",
+          "content": "MY PROJECTS\n\n1. D-Cosmo - AI Medical Chatbot\n   Advanced AI chatbot for medical field.\n   Tech: AI/ML, Python, React\n   cd d-cosmo to learn more\n\n2. Portfolio - Terminal Styled\n   Terminal-styled portfolio website.\n   Tech: React, TypeScript, Xterm.js\n   cd portfolio to learn more\n"
+        }
+      },
+      "subdirectories": {
+        "d-cosmo": {
+          "type": "directory",
+          "description": "AI Medical Chatbot",
+          "files": {
+            "README.md": {
+              "type": "file",
+              "content": "D-COSMO - AI MEDICAL CHATBOT\n\nAdvanced AI-powered chatbot for medical assistance.\n\nFeatures:\n- Natural Language Processing\n- Medical knowledge base\n- Multi-language support\n\nTech: Python, React, TensorFlow, FastAPI\nStatus: Active Development\n"
+            }
+          }
+        },
+        "portfolio": {
+          "type": "directory",
+          "description": "Portfolio Project",
+          "files": {
+            "README.md": {
+              "type": "file",
+              "content": "PORTFOLIO - TERMINAL STYLED\n\nTerminal-styled portfolio showcasing work and skills.\n\nFeatures:\n- Full terminal interface\n- File system navigation\n- Interactive commands\n\nTech: React 19, TypeScript, Xterm.js, Tailwind\nStatus: Production Ready\n"
+            }
+          }
+        }
+      }
+    },
+    "about": {
+      "type": "directory",
+      "description": "About Me",
+      "files": {
+        "bio.txt": {
+          "type": "file",
+          "content": "ABOUT VISHAL VARSHNEY\nFull-stack developer passionate about AI and web technologies.\n\nSpecialties:\n- Full Stack Web Development\n- AI/ML Integration\n- Terminal Applications\n- Cloud Technologies\n\nAlways learning and exploring new tech!\n"
+        },
+        "skills.txt": {
+          "type": "file",
+          "content": "TECHNICAL SKILLS\n\nFrontend: React, TypeScript, Tailwind CSS, Vite\nBackend: Node.js, Python, FastAPI, Django\nDatabases: MongoDB, PostgreSQL, Firebase\nAI/ML: TensorFlow, PyTorch, NLP\nTools: Git, Docker, Linux, CI/CD\n"
+        }
+      }
+    },
+    "contact": {
+      "type": "directory",
+      "description": "Contact Information",
+      "files": {
+        "info.txt": {
+          "type": "file",
+          "content": "CONTACT INFORMATION\n\nEmail: hello@vishalvarshney.dev\nPortfolio: https://vishalvarshney.info\n\nSocial:\nGitHub: https://github.com/vishalvarshney\nLinkedIn: https://linkedin.com/in/vishalvarshney\nTwitter: https://twitter.com/vishalvarshney\n\nOpen to:\n- Freelance projects\n- Full-time positions\n- Open source collaboration\n\nResponse: Within 24 hours\n"
+        }
+      }
+    }
+  }
+}

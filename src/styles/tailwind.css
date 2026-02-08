@@ -13,3 +13,22 @@
 div {
     text-underline-offset: 3px !important;
 }
+
+/* Remove default underline styling for links inside xterm - all states */
+.xterm a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.xterm a:hover {
+  text-decoration: none !important;
+}
+
+.xterm a:visited {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.xterm a:active {
+  text-decoration: none !important;
+}
